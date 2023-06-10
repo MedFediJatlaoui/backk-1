@@ -13,21 +13,23 @@ import java.util.Optional;
 public interface IUserService {
     public List<User> getAllUsers();
 
-    User updateUser(Long id, String email, String password, Role role, String firstname, String lastname, String address, String phone, MultipartFile profileImage) throws IOException;
+    User createUser(String email, String password, Role role, String firstname, String lastname, MultipartFile profileImage, String remise) throws IOException;
+
+    public User updateUser(Long id, Optional<String> email, Optional<String> password, Optional<Role> role, Optional<String> firstname, Optional<String> lastname, Optional<MultipartFile> profileImage,Optional<String>remise) throws IOException ;
 
     String storeProfileImage(MultipartFile profileImage) throws IOException;
 
     public Optional<User> getUserById(Long id);
 
     public Optional<User> getUserByEmail(String email);
-    User createUser(String email, String password, Role role, String firstname, String lastname, String address, String phone, MultipartFile profileImage) throws IOException;
 
 
-    User updateUser(User user);
+
+
 
     public void deleteUser(Long id);
 
     User getUserByToken(@NonNull HttpServletRequest request);
 
-    User updateUserByToken(@NonNull HttpServletRequest request, String email, String password, String firstname, String lastname, String address, String phone, MultipartFile profileImage) throws IOException;
+    public User updateUserByToken(@NonNull HttpServletRequest request, Optional<String> email, Optional<String> password,Optional<String> firstname, Optional<String> lastname, Optional<MultipartFile> profileImage) throws IOException;
 }
